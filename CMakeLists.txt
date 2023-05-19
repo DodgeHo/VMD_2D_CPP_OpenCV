@@ -1,0 +1,15 @@
+﻿cmake_minimum_required (VERSION 3.8)
+
+project ("VMD_2D_CPP")
+
+find_package(Eigen3)
+
+include_directories($SYSTEM ${CMAKE_CURRENT_SOURCE_DIR}/Eigen)
+include_directories($SYSTEM ${CMAKE_CURRENT_SOURCE_DIR}/Eigen/unsupported )
+add_executable (VMD_CPP "VMD.cpp" "VMD.h" "VMD_Utils.cpp")
+
+add_custom_target(build_all_configs
+    COMMAND ${CMAKE_COMMAND} --build ${CMAKE_BINARY_DIR} --target ALL_BUILD --config Debug
+    COMMAND ${CMAKE_COMMAND} --build ${CMAKE_BINARY_DIR} --target ALL_BUILD --config RelWithDebInfo
+    COMMAND ${CMAKE_COMMAND} --build ${CMAKE_BINARY_DIR} --target ALL_BUILD --config Release
+)
